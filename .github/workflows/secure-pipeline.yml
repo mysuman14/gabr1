@@ -3,9 +3,9 @@ name: Secure-Devops-Pipeline
 on:
   push:
     branches:
-	    - master
-	    - main
-    workflow_dispatch:
+	  - master
+	  - main
+  workflow_dispatch:
 
 jobs:
   build:
