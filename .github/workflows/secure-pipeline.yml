@@ -28,3 +28,4 @@ jobs:
       - name: Rollback
         if: failure()
         run: echo "rollback is done"
+        run: echo "perform rollback if only required"
