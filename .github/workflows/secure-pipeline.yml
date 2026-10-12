@@ -1,29 +1,23 @@
+---
 name: Secure-Devops-Pipeline
-
 on:
   push:
     branches:
-	  - master
-	  - main
-  workflow_dispatch:
-
+      - master
+      - main
+  workflow_dispatch: null
 jobs:
   build:
     name: BUILD-JOB
-	runs-on: ubuntu-slim
-	
-	steps:
-	  - name: Code checkout
-		uses: actions/checkout@v4
-		
-	  - name: Install Dependencies
-	    run: npm install
-		
-	  - name: testing the code
-	    run: echo "code is tested"
-		
-	  - name: Deploy
-	    run: echo "code deployment is success"
-		
-	  - name: Rollback
-	    run: echo "rollback is possible"
+    runs-on: ubuntu-slim
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm install
+      - name: testing the code
+        run: echo "code is tested"
+      - name: Deploy
+        run: echo "code deployment is success"
+      - name: Rollback
+        run: echo "rollback is possible"
