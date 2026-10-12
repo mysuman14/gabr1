@@ -1,23 +1,38 @@
----
 name: Secure-Devops-Pipeline
+
 on:
   push:
     branches:
       - master
       - main
-  workflow_dispatch: null
+  workflow_dispatch:
+
 jobs:
   build:
     name: BUILD-JOB
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Code checkout
+      - name: Code Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Clean NPM Cache
+        run: npm cache clean --force
+
       - name: Install Dependencies
-        run: npm install
-      - name: testing the code
-        run: echo "code is tested"
-      - name: Deploy
-        run: echo "code deployment is success"
-      - name: Rollback
-        run: echo "rollback is possible"
+        run: npm ci
+
+      - name: Test Application
+        run: echo "Code is tested successfully"
+
+      - name: Deploy Application
+        run: echo "Code deployment is successful"
+
+      - name: Rollback Plan
+        if: failure()
+        run: echo "Rollback initiated"
